@@ -6,10 +6,10 @@ fake = Faker()
 # Add 25 random books
 for _ in range(25):
     book = {
-        "title": fake.sentence(nb_words=4),
+        "title": fake.sentence(nb_words=4).replace(".", ""),
         "author": fake.name(),
         "genre": fake.word(),
-        "yearPublished": fake.year()
+        "yearPublished": int(fake.year())
     }
     response = requests.post("https://postman-library-api.glitch.me/books", json=book)
     print(f"Added: {book['title']} - Status Code: {response.status_code}")
